@@ -72,7 +72,7 @@ public class Main {
     	      "</style></head>";
 	}
 	
-	private static List<Integer> generateShuffledList(int lower_bound, int upper_bound, Set<Integer> exclude_list) {
+	private static List<Integer> generateShuffledList(int lower_bound, int upper_bound, Set<Integer> exclude_list, boolean should_sort) {
 		List<Integer> numbers = new ArrayList<Integer>();
 		for (int i = lower_bound; i <= upper_bound; ++i) {
 			if (exclude_list.contains(i)) {
@@ -116,12 +116,12 @@ public class Main {
 		for (int col = 0; col < 9; ++col) {
 			int lower_bound = col == 0 ? 1 : col * 10;
 			int upper_bound = col != 8 ? (col + 1) * 10 - 1 : (col + 1) * 10;
-		    numbers.add(generateShuffledList(lower_bound, upper_bound, new HashSet<Integer>()));
-		    System.out.print("[" + col + "] -> ");
-		    for (int number : numbers.get(col)) {
-		    	System.out.print(number + " ");
-		    }
-		    System.out.println();
+		    numbers.add(generateShuffledList(lower_bound, upper_bound, new HashSet<Integer>(), true));
+		    //System.out.print("[" + col + "] -> ");
+		    //for (int number : numbers.get(col)) {
+		    //	System.out.print(number + " ");
+		    //}
+		    //System.out.println();
 		}
 		
 		Map<Integer, Integer> level_num_map = new HashMap<Integer, Integer>();
@@ -409,7 +409,7 @@ public class Main {
 		
 			if (cookies != null) {
 				for (String cookie: cookies) {
-					System.out.println("Cookie: " + cookie);
+					//System.out.println("Cookie: " + cookie);
 					if (!cookie.contains("exclude_list")) {
 						continue;
 					}
@@ -428,13 +428,13 @@ public class Main {
 
 		int num = 0;
 		if (next_number) {
-			List<Integer> new_list = generateShuffledList(1, 90, exclude_list);
+			List<Integer> new_list = generateShuffledList(1, 90, exclude_list, false);
 			if (new_list.size() > 0) {
 				num = new_list.remove(0);
 			}
 		}
 		
-		System.out.println("num generated " + num);
+		//System.out.println("num generated " + num);
 		exclude_list.add(num);
 		String body = "</br></br></br>";
 		
