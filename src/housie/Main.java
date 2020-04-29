@@ -83,6 +83,27 @@ public class Main {
 		}
 		
 		Collections.shuffle(numbers);
+		
+		System.out.print("Shuffled numbers: ");
+		for (int i = 0; i <= 2; ++i) {
+			System.out.print("[" + numbers.get(i) + "] ");
+		}
+		
+		System.out.println();
+		for (int i = 0; i < 2; ++i) {
+			int idx = i;
+			for (int j = i + 1; j <= 2; ++j) {
+				if (numbers.get(j) < numbers.get(idx)) {
+					idx = j;
+				}
+			}
+			
+			if (idx != i) {
+			    int tmp = numbers.get(idx);
+			    numbers.set(idx, numbers.get(i));
+			    numbers.set(i, tmp);
+			}
+		}
 		return numbers;
 	}
 	
@@ -120,8 +141,10 @@ public class Main {
 			
 			level_num_map.put(level, level_num_map.get(level) + 1);
 			int index = 9 * level +  col;
-			System.out.println("- col: " + col + " num: " + numbers.get(col).get(0));
-			ticket.set(index, numbers.get(col).remove(0));
+			int num = numbers.get(col).get(level);
+			numbers.get(col).set(level, 0);
+			System.out.println("- col: " + col + " num: " + num);
+			ticket.set(index, num);
 		}
 				
 		// Generate remaining numbers in each level.
@@ -133,8 +156,10 @@ public class Main {
 				while (j <= pos) {
 					if (ticket.get(index) == 0) {
 						if (j == pos) {
-							System.out.println("col: " + (index % 9) + " num: " + numbers.get(index % 9).get(0));
-							ticket.set(index, numbers.get(index % 9).remove(0));
+							int num = numbers.get(index % 9).get(i);
+							numbers.get(index % 9).set(i,  0);
+							System.out.println("col: " + (index % 9) + " num: " + num);
+							ticket.set(index, num);
 							break;
 						}
 						
