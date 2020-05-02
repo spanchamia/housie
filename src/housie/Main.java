@@ -90,7 +90,7 @@ public class Main {
 		//}
 		
 		//System.out.println();
-        if (should_sort) {
+		if (should_sort) {
 			for (int i = 0; i < 2; ++i) {
 				int idx = i;
 				for (int j = i + 1; j <= 2; ++j) {
@@ -100,12 +100,12 @@ public class Main {
 				}
 				
 				if (idx != i) {
-				    int tmp = numbers.get(idx);
-				    numbers.set(idx, numbers.get(i));
-				    numbers.set(i, tmp);
+					int tmp = numbers.get(idx);
+					numbers.set(idx, numbers.get(i));
+					numbers.set(i, tmp);
 				}
 			}
-        }
+		}
 		return numbers;
 	}
 	
