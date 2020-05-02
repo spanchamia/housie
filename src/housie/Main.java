@@ -84,26 +84,28 @@ public class Main {
 		
 		Collections.shuffle(numbers);
 		
-		System.out.print("Shuffled numbers: ");
-		for (int i = 0; i <= 2; ++i) {
-			System.out.print("[" + numbers.get(i) + "] ");
-		}
+		//System.out.print("Shuffled numbers: ");
+		//for (int i = 0; i <= 2; ++i) {
+		//	System.out.print("[" + numbers.get(i) + "] ");
+		//}
 		
-		System.out.println();
-		for (int i = 0; i < 2; ++i) {
-			int idx = i;
-			for (int j = i + 1; j <= 2; ++j) {
-				if (numbers.get(j) < numbers.get(idx)) {
-					idx = j;
+		//System.out.println();
+        if (should_sort) {
+			for (int i = 0; i < 2; ++i) {
+				int idx = i;
+				for (int j = i + 1; j <= 2; ++j) {
+					if (numbers.get(j) < numbers.get(idx)) {
+						idx = j;
+					}
+				}
+				
+				if (idx != i) {
+				    int tmp = numbers.get(idx);
+				    numbers.set(idx, numbers.get(i));
+				    numbers.set(i, tmp);
 				}
 			}
-			
-			if (idx != i) {
-			    int tmp = numbers.get(idx);
-			    numbers.set(idx, numbers.get(i));
-			    numbers.set(i, tmp);
-			}
-		}
+        }
 		return numbers;
 	}
 	
